@@ -1,0 +1,47 @@
+{
+  "name": "typescript-coverage-repro",
+  "version": "1.0.0",
+  "description": "Reproduction of typescript coverage issues",
+  "scripts": {
+    "build": "node ./node_modules/typescript/lib/tsc.js",
+    "pretest": "npm run build",
+    "test": "nyc npm run jasmine",
+    "jasmine": "node spec/jasmine-runner.js"
+  },
+  "author": "Damyan Petev",
+  "license": "MIT",
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "include": [
+      "lib/"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "output/",
+      "templates/quickstart/",
+      "templates/**/files/"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "instrument": true,
+    "cache": false,
+    "all": true
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.3.12",
+    "@types/node": "^11.12.0",
+    "jasmine": "^3.3.1",
+    "nyc": "^13.3.0",
+    "source-map-support": "^0.5.11",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.4000"
+  }
+}
